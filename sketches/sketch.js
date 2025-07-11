@@ -134,7 +134,7 @@ const sketch = ({ context, width, height }) => {
 
 
 settings.prefix = FILENAME_PREFIX;
-settings.name = format('yyMMdd_hhmmss', new Date());
+// settings.name = format('yyMMdd_hhmmss', new Date());
 // Der Suffix kann jetzt die initialen Konfigurations-Seeds verwenden, um den Dateinamen aussagekräftig zu machen.
 // settings.suffix = `s${SHAPE_SEED || 'rand'}-c${COLOR_SEED || 'rand'}`;
 

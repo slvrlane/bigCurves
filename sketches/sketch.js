@@ -55,7 +55,7 @@ const sketch = ({ context, width, height }) => {
   // 2. Farben definieren. myColors() verwendet jetzt den korrekten Seed.
   const colors = {
     background: myColors(""),
-    spaghetti: myColors("", 0.5),
+    spaghetti: myColors("", 1),
   };
 
   // --- FORM-DATEN GENERIEREN ---
@@ -69,7 +69,7 @@ const sketch = ({ context, width, height }) => {
 
   let currentX = width / 2;
   let currentY = height / 3;
-  let currentRadius = Math.floor(random.range(0.5, 10) * dotSize);
+  let currentRadius = Math.floor(random.range(0.5, 4) * dotSize);
   let startAngle = random.range(0, 2 * Math.PI);
 
   // Konsolen-Logs an den Anfang der Funktion verschoben, um die finalen Seeds zu loggen

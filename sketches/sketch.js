@@ -14,7 +14,7 @@ const { drawArc } = require('../lib/dots.js');
 
 // --- SEED-EINSTELLUNGEN ---
 // HIER KANNST DU DIE SEEDS FIXIEREN ODER ZUFÄLLIG LASSEN (mit 0)
-let SHAPE_SEED = 0; // 0 = zufällige Form. 'deine-seed-nummer' = feste Form.
+let SHAPE_SEED = 939159; // 0 = zufällige Form. 'deine-seed-nummer' = feste Form.
 let COLOR_SEED = 0; // 0 = zufällige Farben. 'deine-seed-nummer' = feste Farben.
 
 // --- Globale, statische Einstellungen ---

@@ -25,8 +25,8 @@ const FILENAME_PREFIX = "bigCurve"
 
 // Parameter zum Experimentieren
 const ANZ_SEGMENTS = 500;
-const BASE_RADIUS = 8;
-const SPAGHETTI_THICKNESS = BASE_RADIUS * 1.6;
+const BASE_RADIUS = 24;
+const SPAGHETTI_THICKNESS = BASE_RADIUS * 1.5;
 const GRAIN_DENSITY = 0.1; // z.B. 20% Dichte
 const GRAIN_SIZE = 1;      // 1x1 Pixel Körner
 
@@ -69,7 +69,7 @@ const sketch = ({ context, width, height }) => {
 
   let currentX = width / 2;
   let currentY = height / 3;
-  let currentRadius = Math.floor(random.range(0.5, 4) * dotSize);
+  let currentRadius = Math.floor(random.range(1, 4) * dotSize);
   let startAngle = random.range(0, 2 * Math.PI);
 
   // Konsolen-Logs an den Anfang der Funktion verschoben, um die finalen Seeds zu loggen

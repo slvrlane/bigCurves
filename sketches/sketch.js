@@ -21,6 +21,8 @@ let COLOR_SEED = 0; // 0 = zufällige Farben. 'deine-seed-nummer' = feste Farben
 const SHOW_GRAIN = false;
 const PRINT_FOOTER = true;
 
+const FILENAME_PREFIX = "bigCurve"
+
 // Parameter zum Experimentieren
 const ANZ_SEGMENTS = 500;
 const BASE_RADIUS = 16;
@@ -130,11 +132,11 @@ const sketch = ({ context, width, height }) => {
 
 // --- STARTPUNKT DES PROGRAMMS ---
 
-// Die Dateinamen-Infos werden hier gesetzt. Der Seed wird nicht mehr zum settings-Objekt hinzugefügt.
-settings.prefix = 'bigCurveGO';
+
+settings.prefix = FILENAME_PREFIX;
 settings.name = format('yyMMdd_hhmmss', new Date());
 // Der Suffix kann jetzt die initialen Konfigurations-Seeds verwenden, um den Dateinamen aussagekräftig zu machen.
-settings.suffix = `s${SHAPE_SEED || 'rand'}-c${COLOR_SEED || 'rand'}`;
+// settings.suffix = `s${SHAPE_SEED || 'rand'}-c${COLOR_SEED || 'rand'}`;
 
 // Den Sketch mit den sauberen Settings starten.
 canvasSketch(sketch, settings);

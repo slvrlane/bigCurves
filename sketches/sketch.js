@@ -26,7 +26,7 @@ const FILENAME_PREFIX = "2bigCurves"
 // Parameter zum Experimentieren
 const ANZ_SEGMENTS = 500;
 const BASE_RADIUS = 24;
-const SPAGHETTI_THICKNESS = BASE_RADIUS * 1.5;
+const SPAGHETTI2_THICKNESS = BASE_RADIUS * 1.5;
 const GRAIN_STYLE = "parallel"; // parallel, colorfull, red, invert
 
 // Grundlegende Sketch-Settings (ohne benutzerdefinierte Eigenschaften)
@@ -58,12 +58,13 @@ const sketch = ({ context, width, height }) => {
   };
 
   // --- FORM-DATEN GENERIEREN ---
+  const e = Math.min(width, height) * 0.01;
   // 3. Den Zufallsgenerator auf den Formen-Seed umschalten.
   random.setSeed(shapeSeed);
   // 4. Alle weiteren zufallsbasierten Berechnungen für die Form durchführen.
   const serpentine1Data = [];
-  const e = Math.min(width, height) * 0.01;
-  const spaghettiSize = SPAGHETTI_THICKNESS * e;
+  const serpentine2Data = [];
+  const spaghetti2Size = SPAGHETTI2_THICKNESS * e;
   const dotSize = BASE_RADIUS * e;
 
   let currentX = width / 2;
@@ -101,7 +102,7 @@ const sketch = ({ context, width, height }) => {
     serpentine1Data.forEach(segment => {
       context.save();
       context.translate(segment.x, segment.y);
-      drawArc(context, segment.radius, colors.spaghetti, spaghettiSize, segment.sAngle, segment.eAngle, segment.clw);
+      drawArc(context, segment.radius, colors.spaghetti, spaghetti2Size, segment.sAngle, segment.eAngle, segment.clw);
       context.restore();
     });
     context.restore();

@@ -29,7 +29,7 @@ const ANZ_SEGMENTS = 100;
 const BASE1_RADIUS = 24;
 const SPAGHETTI1_THICKNESS = BASE1_RADIUS * 1.5;
 
-const BASE2_RADIUS = 8;
+const BASE2_RADIUS = 4;
 const SPAGHETTI2_THICKNESS = BASE2_RADIUS * 1;
 
 const GRAIN_STYLE = "parallel"; // parallel, colorfull, red, invert

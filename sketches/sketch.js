@@ -105,7 +105,7 @@ const sketch = ({ context, width, height }) => {
   startAngle = random.range(0, 2 * Math.PI);
 
   // Spagetthi 2
-  for (let i = 0; i < ANZ_SEGMENTS; i++) {
+  for (let i = 1; i < ANZ_SEGMENTS; i++) {
     const angleOffset = random.range(0.6, 1.5 * Math.PI);
     const endAngle = startAngle + angleOffset;
     const isClockwise = i % 2 === 1;

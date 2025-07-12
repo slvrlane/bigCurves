@@ -25,8 +25,13 @@ const FILENAME_PREFIX = "2bigCurves"
 
 // Parameter zum Experimentieren
 const ANZ_SEGMENTS = 500;
-const BASE_RADIUS = 24;
-const SPAGHETTI2_THICKNESS = BASE_RADIUS * 1.5;
+
+const BASE1_RADIUS = 24;
+const SPAGHETTI1_THICKNESS = BASE1_RADIUS * 1.5;
+
+const BASE2_RADIUS = 8;
+const SPAGHETTI2_THICKNESS = BASE2_RADIUS * 1.5;
+
 const GRAIN_STYLE = "parallel"; // parallel, colorfull, red, invert
 
 // Grundlegende Sketch-Settings (ohne benutzerdefinierte Eigenschaften)
@@ -64,14 +69,17 @@ const sketch = ({ context, width, height }) => {
   // 4. Alle weiteren zufallsbasierten Berechnungen für die Form durchführen.
   const serpentine1Data = [];
   const serpentine2Data = [];
+  const spaghetti1Size = SPAGHETTI1_THICKNESS * e;
   const spaghetti2Size = SPAGHETTI2_THICKNESS * e;
-  const dotSize = BASE_RADIUS * e;
+  const dot1Size = BASE2_RADIUS * e;
+  const dot2Size = BASE2_RADIUS * e;
 
   let currentX = width / 2;
   let currentY = height / 3;
-  let currentRadius = Math.floor(random.range(1, 4) * dotSize);
+  let currentRadius = Math.floor(random.range(1, 4) * dot1Size);
   let startAngle = random.range(0, 2 * Math.PI);
 
+  // Spagetthi 1
   for (let i = 0; i < ANZ_SEGMENTS; i++) {
     const angleOffset = random.range(0.6, 1.5 * Math.PI);
     const endAngle = startAngle + angleOffset;
@@ -79,7 +87,26 @@ const sketch = ({ context, width, height }) => {
 
     serpentine1Data.push({ x: currentX, y: currentY, radius: currentRadius, sAngle: startAngle, eAngle: endAngle, clw: isClockwise });
 
-    const nextRadius = Math.floor(random.range(0.8, 1.5) * dotSize);
+    const nextRadius = Math.floor(random.range(0.8, 1.5) * dot1Size);
+    const connectionLength = currentRadius + nextRadius;
+    const nextCenterX = currentX + connectionLength * Math.cos(endAngle);
+    const nextCenterY = currentY + connectionLength * Math.sin(endAngle);
+
+    currentX = nextCenterX;
+    currentY = nextCenterY;
+    currentRadius = nextRadius;
+    startAngle = endAngle + Math.PI;
+  }
+
+  // Spagetthi 2
+  for (let i = 0; i < ANZ_SEGMENTS; i++) {
+    const angleOffset = random.range(0.6, 1.5 * Math.PI);
+    const endAngle = startAngle + angleOffset;
+    const isClockwise = i % 2 === 1;
+
+    serpentine1Data.push({ x: currentX, y: currentY, radius: currentRadius, sAngle: startAngle, eAngle: endAngle, clw: isClockwise });
+
+    const nextRadius = Math.floor(random.range(0.8, 1.5) * dot1Size);
     const connectionLength = currentRadius + nextRadius;
     const nextCenterX = currentX + connectionLength * Math.cos(endAngle);
     const nextCenterY = currentY + connectionLength * Math.sin(endAngle);
@@ -96,7 +123,18 @@ const sketch = ({ context, width, height }) => {
     context.fillStyle = colors.background.hex;
     context.fillRect(0, 0, width, height);
 
-    // b. Spaghetti-Struktur zeichnen
+    // b1. Spaghetti1-Struktur zeichnen
+    context.save();
+    context.globalCompositeOperation = "screen";
+    serpentine1Data.forEach(segment => {
+      context.save();
+      context.translate(segment.x, segment.y);
+      drawArc(context, segment.radius, colors.spaghetti, spaghetti2Size, segment.sAngle, segment.eAngle, segment.clw);
+      context.restore();
+    });
+    context.restore();
+
+    // b2. Spaghetti2-Struktur zeichnen
     context.save();
     context.globalCompositeOperation = "screen";
     serpentine1Data.forEach(segment => {

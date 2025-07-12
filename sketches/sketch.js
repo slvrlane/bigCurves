@@ -135,7 +135,7 @@ const sketch = ({ context, width, height }) => {
     serpentine1Data.forEach(segment => {
       context.save();
       context.translate(segment.x, segment.y);
-      // drawArc(context, segment.radius, colors.spaghetti1, spaghetti1Size, segment.sAngle, segment.eAngle, segment.clw);
+      drawArc(context, segment.radius, colors.spaghetti1, spaghetti1Size, segment.sAngle, segment.eAngle, segment.clw);
       context.restore();
     });
     context.restore();

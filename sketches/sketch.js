@@ -24,13 +24,13 @@ const PRINT_FOOTER = true;
 const FILENAME_PREFIX = "2bigCurves"
 
 // Parameter zum Experimentieren
-const ANZ_SEGMENTS = 500;
+const ANZ_SEGMENTS = 50;
 
 const BASE1_RADIUS = 24;
 const SPAGHETTI1_THICKNESS = BASE1_RADIUS * 1.5;
 
 const BASE2_RADIUS = 8;
-const SPAGHETTI2_THICKNESS = BASE2_RADIUS * 1.5;
+const SPAGHETTI2_THICKNESS = BASE2_RADIUS * 1;
 
 const GRAIN_STYLE = "parallel"; // parallel, colorfull, red, invert
 
@@ -59,7 +59,8 @@ const sketch = ({ context, width, height }) => {
   // 2. Farben definieren. myColors() verwendet jetzt den korrekten Seed.
   const colors = {
     background: myColors(""),
-    spaghetti: myColors("", 1),
+    spaghetti1: myColors("", 1),
+    spaghetti2: myColors("", 1),
   };
 
   // --- FORM-DATEN GENERIEREN ---
@@ -71,7 +72,7 @@ const sketch = ({ context, width, height }) => {
   const serpentine2Data = [];
   const spaghetti1Size = SPAGHETTI1_THICKNESS * e;
   const spaghetti2Size = SPAGHETTI2_THICKNESS * e;
-  const dot1Size = BASE2_RADIUS * e;
+  const dot1Size = BASE1_RADIUS * e;
   const dot2Size = BASE2_RADIUS * e;
 
   let currentX = width / 2;
@@ -98,15 +99,20 @@ const sketch = ({ context, width, height }) => {
     startAngle = endAngle + Math.PI;
   }
 
+  currentX = width / 2;
+  currentY = height / 3;
+  currentRadius = Math.floor(random.range(1, 4) * dot1Size);
+  startAngle = random.range(0, 2 * Math.PI);
+
   // Spagetthi 2
   for (let i = 0; i < ANZ_SEGMENTS; i++) {
     const angleOffset = random.range(0.6, 1.5 * Math.PI);
     const endAngle = startAngle + angleOffset;
     const isClockwise = i % 2 === 1;
 
-    serpentine1Data.push({ x: currentX, y: currentY, radius: currentRadius, sAngle: startAngle, eAngle: endAngle, clw: isClockwise });
+    serpentine2Data.push({ x: currentX, y: currentY, radius: currentRadius, sAngle: startAngle, eAngle: endAngle, clw: isClockwise });
 
-    const nextRadius = Math.floor(random.range(0.8, 1.5) * dot1Size);
+    const nextRadius = Math.floor(random.range(0.8, 1.5) * dot2Size);
     const connectionLength = currentRadius + nextRadius;
     const nextCenterX = currentX + connectionLength * Math.cos(endAngle);
     const nextCenterY = currentY + connectionLength * Math.sin(endAngle);
@@ -129,7 +135,7 @@ const sketch = ({ context, width, height }) => {
     serpentine1Data.forEach(segment => {
       context.save();
       context.translate(segment.x, segment.y);
-      drawArc(context, segment.radius, colors.spaghetti, spaghetti2Size, segment.sAngle, segment.eAngle, segment.clw);
+      // drawArc(context, segment.radius, colors.spaghetti1, spaghetti1Size, segment.sAngle, segment.eAngle, segment.clw);
       context.restore();
     });
     context.restore();
@@ -137,10 +143,10 @@ const sketch = ({ context, width, height }) => {
     // b2. Spaghetti2-Struktur zeichnen
     context.save();
     context.globalCompositeOperation = "screen";
-    serpentine1Data.forEach(segment => {
+    serpentine2Data.forEach(segment => {
       context.save();
       context.translate(segment.x, segment.y);
-      drawArc(context, segment.radius, colors.spaghetti, spaghetti2Size, segment.sAngle, segment.eAngle, segment.clw);
+      drawArc(context, segment.radius, colors.spaghetti2, spaghetti2Size, segment.sAngle, segment.eAngle, segment.clw);
       context.restore();
     });
     context.restore();
@@ -152,7 +158,7 @@ const sketch = ({ context, width, height }) => {
 
     // d. Optional: Fusszeile mit Infos drucken
     if (PRINT_FOOTER) {
-      const colorList = [colors.background, colors.spaghetti];
+      const colorList = [colors.background, colors.spaghetti1,colors.spaghetti2];
       const seeds = { shape: shapeSeed, color: colorSeed };
       printFooter(context, width, height, seeds, settings, colorList);
     }

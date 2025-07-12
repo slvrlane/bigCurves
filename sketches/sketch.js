@@ -131,7 +131,7 @@ const sketch = ({ context, width, height }) => {
 
     // b1. Spaghetti1-Struktur zeichnen
     context.save();
-    context.globalCompositeOperation = "screen";
+    context.globalCompositeOperation = "overlay";
     serpentine1Data.forEach(segment => {
       context.save();
       context.translate(segment.x, segment.y);
@@ -142,7 +142,7 @@ const sketch = ({ context, width, height }) => {
 
     // b2. Spaghetti2-Struktur zeichnen
     context.save();
-    context.globalCompositeOperation = "screen";
+    context.globalCompositeOperation = "overlay";
     serpentine2Data.forEach(segment => {
       context.save();
       context.translate(segment.x, segment.y);

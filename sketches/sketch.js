@@ -60,7 +60,7 @@ const sketch = ({ context, width, height }) => {
   const colors = {
     background: myColors(""),
     spaghetti1: myColors("", 1),
-    spaghetti2: myColors("", 1),
+    spaghetti2: myColors("", 0.8),
   };
 
   // --- FORM-DATEN GENERIEREN ---

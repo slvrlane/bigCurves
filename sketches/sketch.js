@@ -21,14 +21,13 @@ let COLOR_SEED = 0; // 0 = zufällige Farben. 'deine-seed-nummer' = feste Farben
 const SHOW_GRAIN = true;
 const PRINT_FOOTER = true;
 
-const FILENAME_PREFIX = "bigCurve"
+const FILENAME_PREFIX = "2bigCurves"
 
 // Parameter zum Experimentieren
 const ANZ_SEGMENTS = 500;
 const BASE_RADIUS = 24;
 const SPAGHETTI_THICKNESS = BASE_RADIUS * 1.5;
-const GRAIN_DENSITY = 0.1; // z.B. 20% Dichte
-const GRAIN_SIZE = 1;      // 1x1 Pixel Körner
+const GRAIN_STYLE = "parallel"; // parallel, colorfull, red, invert
 
 // Grundlegende Sketch-Settings (ohne benutzerdefinierte Eigenschaften)
 const settings = {
@@ -62,7 +61,7 @@ const sketch = ({ context, width, height }) => {
   // 3. Den Zufallsgenerator auf den Formen-Seed umschalten.
   random.setSeed(shapeSeed);
   // 4. Alle weiteren zufallsbasierten Berechnungen für die Form durchführen.
-  const serpentineData = [];
+  const serpentine1Data = [];
   const e = Math.min(width, height) * 0.01;
   const spaghettiSize = SPAGHETTI_THICKNESS * e;
   const dotSize = BASE_RADIUS * e;
@@ -77,7 +76,7 @@ const sketch = ({ context, width, height }) => {
     const endAngle = startAngle + angleOffset;
     const isClockwise = i % 2 === 1;
 
-    serpentineData.push({ x: currentX, y: currentY, radius: currentRadius, sAngle: startAngle, eAngle: endAngle, clw: isClockwise });
+    serpentine1Data.push({ x: currentX, y: currentY, radius: currentRadius, sAngle: startAngle, eAngle: endAngle, clw: isClockwise });
 
     const nextRadius = Math.floor(random.range(0.8, 1.5) * dotSize);
     const connectionLength = currentRadius + nextRadius;
@@ -99,7 +98,7 @@ const sketch = ({ context, width, height }) => {
     // b. Spaghetti-Struktur zeichnen
     context.save();
     context.globalCompositeOperation = "screen";
-    serpentineData.forEach(segment => {
+    serpentine1Data.forEach(segment => {
       context.save();
       context.translate(segment.x, segment.y);
       drawArc(context, segment.radius, colors.spaghetti, spaghettiSize, segment.sAngle, segment.eAngle, segment.clw);
@@ -109,7 +108,7 @@ const sketch = ({ context, width, height }) => {
 
     // c. Optional: Grain hinzufügen
     if (SHOW_GRAIN) {
-      addGrain(context, width, height, GRAIN_DENSITY, GRAIN_SIZE);
+      addGrain(context, [width, height], GRAIN_STYLE);
     }
 
     // d. Optional: Fusszeile mit Infos drucken

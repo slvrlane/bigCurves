@@ -77,7 +77,7 @@ const sketch = ({ context, width, height }) => {
 
   let currentX = width / 2;
   let currentY = height / 3;
-  let currentRadius = Math.floor(random.range(1, 4) * dot1Size);
+  let currentRadius = Math.floor(random.range(0.8, 1.5) * dot1Size);
   let startAngle = random.range(0, 2 * Math.PI);
 
   // Spagetthi 1
@@ -101,7 +101,7 @@ const sketch = ({ context, width, height }) => {
 
   currentX = width / 2;
   currentY = height / 3;
-  currentRadius = Math.floor(random.range(1, 4) * dot1Size);
+  currentRadius = Math.floor(random.range(0.8, 1.5) * dot1Size);
   startAngle = random.range(0, 2 * Math.PI);
 
   // Spagetthi 2
@@ -158,7 +158,7 @@ const sketch = ({ context, width, height }) => {
 
     // d. Optional: Fusszeile mit Infos drucken
     if (PRINT_FOOTER) {
-      const colorList = [colors.background, colors.spaghetti1,colors.spaghetti2];
+      const colorList = [colors.background, colors.spaghetti1, colors.spaghetti2];
       const seeds = { shape: shapeSeed, color: colorSeed };
       printFooter(context, width, height, seeds, settings, colorList);
     }

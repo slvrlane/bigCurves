@@ -72,6 +72,15 @@ const sketch = ({ context, width, height }) => {
   let currentRadius = Math.floor(random.range(1, 4) * dotSize);
   let startAngle = random.range(0, 2 * Math.PI);
 
+  // Konsolen-Logs an den Anfang der Funktion verschoben, um die finalen Seeds zu loggen
+  console.log("Neuer Sketch: bigCurve V4.1 (Final Fix)");
+  console.log(`Dateiname: ${settings.prefix}-${settings.name}-${settings.suffix}.png`);
+  console.log(`Shape Seed: ${shapeSeed}, Color Seed: ${colorSeed}`);
+  console.log("Farben:", {
+    background: `${colors.background.name} (${colors.background.hex})`,
+    spaghetti: `${colors.spaghetti.name} (${colors.spaghetti.hex}, alpha=${colors.spaghetti.alpha})`,
+  });
+
   for (let i = 0; i < ANZ_SEGMENTS; i++) {
     const angleOffset = random.range(0.6, 1.5 * Math.PI);
     const endAngle = startAngle + angleOffset;

@@ -25,7 +25,7 @@ const FILENAME_PREFIX = "2bigCurves"
 
 // Parameter zum Experimentieren
 const ANZ_SEGMENTS1 = 100;
-const ANZ_SEGMENTS2 = 500;
+const ANZ_SEGMENTS2 = 5000;
 
 const BASE1_RADIUS = 24;
 const SPAGHETTI1_THICKNESS = BASE1_RADIUS * 1.5;

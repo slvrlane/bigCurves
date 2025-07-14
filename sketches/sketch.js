@@ -59,9 +59,9 @@ const sketch = ({ context, width, height }) => {
   random.setSeed(colorSeed);
   // 2. Farben definieren. myColors() verwendet jetzt den korrekten Seed.
   const colors = {
-    background: myColors(""),
-    spaghetti1: myColors("", 1),
-    spaghetti2: myColors("white", 0.9),
+    background: myColors("RisoFederal Blue"),
+    spaghetti1: myColors("Slate", 1),
+    spaghetti2: myColors("", 0.9),
   };
 
   // --- FORM-DATEN GENERIEREN ---

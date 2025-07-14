@@ -29,8 +29,8 @@ const ANZ_SEGMENTS = 100;
 const BASE1_RADIUS = 24;
 const SPAGHETTI1_THICKNESS = BASE1_RADIUS * 1.5;
 
-const BASE2_RADIUS = 2;
-const SPAGHETTI2_THICKNESS = BASE2_RADIUS * 1;
+const BASE2_RADIUS = 3;
+const SPAGHETTI2_THICKNESS = BASE2_RADIUS * 0.2;
 
 const GRAIN_STYLE = "parallel"; // parallel, colorfull, red, invert
 
@@ -60,7 +60,7 @@ const sketch = ({ context, width, height }) => {
   const colors = {
     background: myColors(""),
     spaghetti1: myColors("", 1),
-    spaghetti2: myColors("", 0.8),
+    spaghetti2: myColors("white", 0.95),
   };
 
   // --- FORM-DATEN GENERIEREN ---
@@ -101,7 +101,7 @@ const sketch = ({ context, width, height }) => {
 
   currentX = width / 2;
   currentY = height / 3;
-  currentRadius = Math.floor(random.range(0.8, 1.5) * dot1Size);
+  currentRadius = Math.floor(random.range(0.8, 1.5) * dot2Size);
   startAngle = random.range(0, 2 * Math.PI);
 
   // Spagetthi 2
@@ -142,7 +142,7 @@ const sketch = ({ context, width, height }) => {
 
     // b2. Spaghetti2-Struktur zeichnen
     context.save();
-    context.globalCompositeOperation = "screen";
+    context.globalCompositeOperation = "";
     serpentine2Data.forEach(segment => {
       context.save();
       context.translate(segment.x, segment.y);

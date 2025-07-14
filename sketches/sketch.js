@@ -24,7 +24,8 @@ const PRINT_FOOTER = true;
 const FILENAME_PREFIX = "2bigCurves"
 
 // Parameter zum Experimentieren
-const ANZ_SEGMENTS = 100;
+const ANZ_SEGMENTS1 = 100;
+const ANZ_SEGMENTS2 = 500;
 
 const BASE1_RADIUS = 24;
 const SPAGHETTI1_THICKNESS = BASE1_RADIUS * 1.5;
@@ -60,7 +61,7 @@ const sketch = ({ context, width, height }) => {
   const colors = {
     background: myColors(""),
     spaghetti1: myColors("", 1),
-    spaghetti2: myColors("white", 0.95),
+    spaghetti2: myColors("black", 0.9),
   };
 
   // --- FORM-DATEN GENERIEREN ---
@@ -81,7 +82,7 @@ const sketch = ({ context, width, height }) => {
   let startAngle = random.range(0, 2 * Math.PI);
 
   // Spagetthi 1
-  for (let i = 0; i < ANZ_SEGMENTS; i++) {
+  for (let i = 0; i < ANZ_SEGMENTS1; i++) {
     const angleOffset = random.range(0.6, 1.5 * Math.PI);
     const endAngle = startAngle + angleOffset;
     const isClockwise = i % 2 === 1;
@@ -105,7 +106,7 @@ const sketch = ({ context, width, height }) => {
   startAngle = random.range(0, 2 * Math.PI);
 
   // Spagetthi 2
-  for (let i = 1; i < ANZ_SEGMENTS; i++) {
+  for (let i = 1; i < ANZ_SEGMENTS2; i++) {
     const angleOffset = random.range(0.6, 1.5 * Math.PI);
     const endAngle = startAngle + angleOffset;
     const isClockwise = i % 2 === 1;
@@ -142,7 +143,7 @@ const sketch = ({ context, width, height }) => {
 
     // b2. Spaghetti2-Struktur zeichnen
     context.save();
-    context.globalCompositeOperation = "";
+    context.globalCompositeOperation = "overlay";
     serpentine2Data.forEach(segment => {
       context.save();
       context.translate(segment.x, segment.y);

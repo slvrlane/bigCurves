@@ -61,7 +61,7 @@ const sketch = ({ context, width, height }) => {
   const colors = {
     background: myColors("RisoFederal Blue"),
     spaghetti1: myColors("Slate", 1),
-    spaghetti2: myColors("Raspberry Red", 0.9),
+    spaghetti2: myColors("", 0.9),
   };
 
   // --- FORM-DATEN GENERIEREN ---
@@ -144,7 +144,7 @@ const sketch = ({ context, width, height }) => {
 
     // b2. Spaghetti2-Struktur zeichnen
     context.save();
-    context.globalCompositeOperation = "screen";
+    context.globalCompositeOperation = "overlay";
     serpentine2Data.forEach(segment => {
       context.save();
       context.translate(segment.x, segment.y);

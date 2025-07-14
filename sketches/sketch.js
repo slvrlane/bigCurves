@@ -102,7 +102,7 @@ const sketch = ({ context, width, height }) => {
 
   currentX = width / 2;
   currentY = height / 3;
-  currentRadius = Math.floor(random.range(0.5, 1.5) * dot2Size);
+  currentRadius = Math.floor(random.range(5, 20) * dot2Size);
   startAngle = random.range(0, 2 * Math.PI);
 
   // Spagetthi 2
@@ -113,7 +113,7 @@ const sketch = ({ context, width, height }) => {
 
     serpentine2Data.push({ x: currentX, y: currentY, radius: currentRadius, sAngle: startAngle, eAngle: endAngle, clw: isClockwise });
 
-    const nextRadius = Math.floor(random.range(0.8, 5.5) * dot2Size);
+    const nextRadius = Math.floor(random.range(1, 2) * dot2Size);
     const connectionLength = currentRadius + nextRadius;
     const nextCenterX = currentX + connectionLength * Math.cos(endAngle);
     const nextCenterY = currentY + connectionLength * Math.sin(endAngle);

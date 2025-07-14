@@ -37,8 +37,8 @@ const GRAIN_STYLE = "parallel"; // parallel, colorfull, red, invert
 
 // Grundlegende Sketch-Settings (ohne benutzerdefinierte Eigenschaften)
 const settings = {
-  // dimensions: [655, 910],  // in A6 ratio, aber halb so gross für Arbeitsgalerie
-  dimensions: [1311, 1819],  // A6 Karte mit bleed
+  dimensions: [655, 910],  // in A6 ratio, aber halb so gross für Arbeitsgalerie
+  // dimensions: [1311, 1819],  // A6 Karte mit bleed
   attributes: { willReadFrequently: true },
   animate: false,
   scaleToView: true,
